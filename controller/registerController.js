@@ -13,6 +13,6 @@ const userRegisterController = async(req,res)=>{
     });
     await doc.save();
     console.log("Registration Successfully");
-    res.redirect("/register");
+    res.redirect("/login");
 }
 export {registerController , userRegisterController};

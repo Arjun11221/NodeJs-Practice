@@ -1,19 +1,22 @@
 import express from "express";
 const router = express.Router();
-import homeController from "../controller/homeController.js";
+import {homeController,dashboardController} from "../controller/homeController.js";
 import aboutController from "../controller/aboutController.js";
 import contactController from "../controller/contactController.js";
-import {loginController , userLoginController} from "../controller/loginController.js";
+import {loginController , userLoginController , logoutController} from "../controller/loginController.js";
 import {registerController , userRegisterController} from "../controller/registerController.js";
+import { isLogin, isLogout, registerMid } from "../middleware/userMiddleware.js";
 
 
 router.get("/",homeController);
-router.get("/about",aboutController);
-router.get("/contact",contactController);
-router.get("/login",loginController);
-router.get("/register",registerController);
+router.get("/about",isLogin,aboutController);
+router.get("/contact",isLogin,contactController);
+router.get("/login",isLogout,loginController);
+router.get("/register",registerMid,registerController);
 router.post("/register", userRegisterController);
 router.post("/login", userLoginController);
+router.get("/dashboard",isLogin,dashboardController);
+router.get("/logout",isLogin,logoutController);
 
 
 export default router;

@@ -11,7 +11,8 @@ const userLoginController = async(req,res)=>{
         const data = await registerModel.findOne({email:email});
         if(data){
             if(data.password==password){
-                res.send("You are Login");
+                req.session.user_id = data._id;
+                res.redirect("/dashboard");
             }else{
                 res.render("login");
             }   
@@ -25,4 +26,14 @@ const userLoginController = async(req,res)=>{
 
     }
 }
-export {loginController , userLoginController};
+const logoutController = async(req,res)=>{
+    try {
+        if(req.session.user_id){
+            req.session.destroy();
+            res.redirect("/login");
+        }
+    } catch (error) {
+        console.log(error.message);
+    }
+}
+export {loginController , userLoginController , logoutController};

@@ -1,8 +1,15 @@
+import registerModel from "../models/registrationSchema.js";
 
 const homeController = (req,res)=>{
-    let name = "Arjun";
-    let age = 21;
-    res.render("index" , {name : name ,age : age});
+    res.render("index");
 }
 
-export default homeController; 
+const dashboardController = async(req,res)=>{
+    if(req.session.user_id){
+        const userData = await registerModel.findById({_id:req.session.user_id});
+        // console.log(userData);
+        res.render("dashboard" , {"name":userData.name});
+    }
+    
+}
+export {homeController,dashboardController}; 
