@@ -1,7 +1,9 @@
 import registerModel from "../models/registrationSchema.js";
+import userPostModel from "../models/postSchema.js";
 
-const homeController = (req,res)=>{
-    res.render("index");
+const homeController = async(req,res)=>{
+    const allpost = await userPostModel.find({});
+    res.render("index",{"allpost" : allpost});
 }
 
 const dashboardController = async(req,res)=>{
