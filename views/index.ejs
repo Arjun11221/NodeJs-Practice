@@ -1,25 +1,22 @@
 <%- include('./base/header.ejs')%>
 <% if(allpost.length>0){ 
     for(var i = 0; i <allpost.length; i++){ %>
-        <div class="container mt-5 shadow-lg p-3 mb-5 bg-body-tertiary rounded">
-            <div class="row">
-            <div class="col-sm-12 col-xl-6">
-                <img src="" alt="" />
-            </div>
-        <div class="col-sm-12 col-xl-6">
-            <div class="row">
-            <h1>
-                <%= allpost[i].title %>
-            </h1>
-            <hr />
-        </div>
         <div class="row">
-        <p>
-          <%= allpost[i].description %>
-        </p>
-      </div>
-    </div>
-  </div>
+          <div class="col-3"></div>
+          <div class="col-6">
+            <div class="container  mt-5 shadow-lg p-3 mb-5 bg-body-tertiary rounded">
+              <div class="card">
+                <img width="100px" height="300px" src="<%= '/images/blogimages/'+allpost[i].image %>" class="card-img-top" alt="...">
+                <hr>
+                <div class="card-body">
+                  <h5 class="card-title"><%= allpost[i].title %></h5>
+                  <p class="card-text"><%= allpost[i].description %>.</p>
+                  <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+              </div>
+          </div>
+          <div class="col-2"></div>
+        </div>
 </div>
 <% } } %> 
 <%- include('./base/footer.ejs')%>
